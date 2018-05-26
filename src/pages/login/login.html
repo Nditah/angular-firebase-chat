@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Signin</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content text-wrap padding>
+  <!-- Generated template for the GoogeLoginComponent component -->
+  <div *ngIf="( user | async ) || {} as user ">
+
+    <ion-list *ngIf="!user.uid">
+      <ion-item text-center>
+        <a button ion-button color="success" *ngIf="!user.uid" (tap)="googleLogin()" icon-start large>
+          <ion-icon name='logo-google'></ion-icon>
+          Login with Google
+        </a>
+      </ion-item>
+    </ion-list>
+
+    <ion-list no-lines *ngIf="user.uid">
+      <ion-item>
+        <a class="item ion-avatar" style="align-items: center; max-width:2.5rem; max-height:2.5rem;">
+          <img src="{{ userInfo.photo }}" alt="Display Name">
+        </a>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon name="ribbon" color="primary" item-start></ion-icon>
+        <p>Name</p>
+        {{ userInfo.name }}
+      </ion-item>
+      <ion-item>
+        <ion-icon name="mail" color="primary" item-start></ion-icon>
+        <p>Email</p>
+        {{ userInfo.email }}
+      </ion-item>
+      <ion-item *ngIf="userInfo.phone">
+        <ion-icon item-start name="call" color="primary"></ion-icon>
+        <p>Mobile</p>
+        {{ userInfo.phone }}
+      </ion-item>
+      <ion-item>
+        <ion-icon item-start name="person" color="primary"></ion-icon>       
+        <ion-label color="primary" floating>Display name</ion-label>
+        <ion-input type="text" [(ngModel)]="userInfo.displayName" placeholder="Display Name"></ion-input>
+      </ion-item>
+      <ion-item>
+        <button ion-button color="primary" (tap)="enterDisplayname()">Enter Chat</button>
+        <button ion-button color="danger" (tap)="signOut()">Signout</button>
+      </ion-item>
+
+
+    </ion-list>
+
+  </div>
+</ion-content>

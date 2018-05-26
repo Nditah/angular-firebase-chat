@@ -1,15 +1,15 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="io.ionic.starter" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.firebaseapp.grandilochatting" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>grandiloChatting</name>
-    <description>An awesome Ionic/Cordova app.</description>
-    <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
+    <description>An awesome Grandilo chatting app.</description>
+    <author email="nditah@gmail.com" href="http://grandilo.com/">Grandilo Team</author>
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
-    <allow-intent href="tel:*" />
-    <allow-intent href="sms:*" />
-    <allow-intent href="mailto:*" />
+    <allow-intent href="tel:+2348134836164" />
+    <allow-intent href="sms:+2348134836164" />
+    <allow-intent href="mailto:nditah@gmail.com" />
     <allow-intent href="geo:*" />
     <preference name="ScrollEnabled" value="false" />
     <preference name="android-minSdkVersion" value="19" />
@@ -81,4 +81,9 @@
     <plugin name="cordova-plugin-splashscreen" spec="5.0.2" />
     <plugin name="cordova-plugin-ionic-webview" spec="1.1.19" />
     <plugin name="cordova-plugin-ionic-keyboard" spec="2.0.5" />
+    <plugin name="cordova-plugin-googleplus" spec="^5.3.0">
+        <variable name="REVERSED_CLIENT_ID" value="" />
+    </plugin>
+    <plugin name="cordova-plugin-network-information" spec="^2.0.1" />
+    <plugin name="cordova-plugin-networkinterface" spec="^2.0.0" />
 </widget>

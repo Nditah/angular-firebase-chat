@@ -6,12 +6,47 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
-  <ion-list>
-    <ion-list-header>Follow us on Twitter</ion-list-header>
-    <ion-item>
-      <ion-icon name="ionic" item-start></ion-icon>
-      @ionicframework
-    </ion-item>
-  </ion-list>
-</ion-content>
+<ion-content class="bg-modal" text-wrap padding>
+    
+    <div class="main-content" text-wrap text-center>
+        <div class="circular"><img src="assets/imgs/grandilo.png"></div>
+      <h2>{{user.name}}</h2>
+      <p>{{user.occupation}} &bull; {{user.location}}</p>
+      <p class="profile-description">{{user.description}}</p>
+      <hr>
+      <ion-list no-lines>
+        <ion-item>
+          <ion-icon name="mail" color="primary" item-start></ion-icon>
+          <a href="mailto:{{user.email}}" color="primary" item-end small>{{user.email}}</a>
+        </ion-item>
+        <ion-item>
+          <ion-icon item-start name="call" color="primary"></ion-icon>
+          <a href="tel:{{user.phone}}" color="primary" item-end small>{{user.phone}}</a>
+        </ion-item>
+        <ion-item>
+          <ion-icon item-start name="logo-whatsapp" color="secondary"></ion-icon>
+          <a color="secondary" item-end small href="whatsapp://send?text=Hi from ionic&phone=+{{user.phone}}&abid=+{{user.phone}}">
+            {{user.whatsapp}}</a>
+        </ion-item>
+        <ion-item>
+          <ion-icon item-start name="pin" color="secondary"></ion-icon>
+          <p>{{user.address}}</p>
+        </ion-item>
+      </ion-list>
+      <h2>Get in touch</h2>
+      <hr>
+      <a href="https://www.linkedin.com/" button ion-button block color="linkedin" icon-start>
+        <ion-icon name='logo-linkedin'></ion-icon>
+        LinkedIn
+      </a>
+      <a href="https://www.facebook.com/grandilo/" button ion-button block color="fb" icon-start>
+        <ion-icon name='logo-facebook'></ion-icon>
+        Facebook
+      </a>
+      <a href="https://twitter.com/grandilo" button ion-button block color="twitter" icon-start>
+        <ion-icon name='logo-twitter'></ion-icon>
+        Twitter
+      </a>
+    </div>
+  
+  </ion-content>

@@ -7,6 +7,9 @@ import { NavController } from 'ionic-angular';
 })
 export class AboutPage {
 
+  text = "About Grandilo Chat";
+  logo = ""; 
+
   constructor(public navCtrl: NavController) {
 
   }

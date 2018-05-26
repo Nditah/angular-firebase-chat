@@ -1,16 +1,142 @@
-// http://ionicframework.com/docs/theming/
+
+$base-color: rgb(24, 72, 90);
+// Fullscreen centered image background
+ion-content {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-color: transparent;
+}
 
 
-// App Global Sass
-// --------------------------------------------------
-// Put style rules here that you want to apply globally. These
-// styles are for the entire app and not just one component.
-// Additionally, this file can be also used as an entry point
-// to import other Sass files to be included in the output CSS.
-//
-// Shared Sass variables, which can be used to adjust Ionic's
-// default Sass variables, belong in "theme/variables.scss".
-//
-// To declare rules for a specific mode, create a child rule
-// for the .md, .ios, or .wp mode classes. The mode class is
-// automatically applied to the <body> element in the app.
+// Input items
+ion-label,
+.input-has-focus {
+ // color: #fff !important;
+}
+ 
+
+ion-item {
+  border-radius: 3px !important;
+  padding-right: 16px !important;
+  margin-bottom: 5px !important;
+  //color: #fff !important;
+  background-color: transparent !important;
+  font-size: 0.9em;
+}
+
+ ::-webkit-input-placeholder {
+  color: white !important;
+}
+
+.item-inner {
+  border-bottom: 2px solid white !important;
+  box-shadow: none !important;
+}
+
+.prime-button {
+  width: 100%;
+  max-width: 40rem;
+  height: 50px;
+  font-size: 1.2em;
+  span {
+    color: $base-color !important;
+  }
+}
+.link-button {
+    font-weight: bold;
+    float: right;
+    ion-icon {
+      padding-left: 10px;
+      font-size: 2.2rem;
+    }
+  }
+
+
+
+  //old stuff
+// class of ion-content
+.home-background {
+    background-image: url('../assets/img/bg1.jpg');
+    -webkit-background-image: url('../assets/img/bg1.jpg');
+      background-position: center center;
+      background-size: cover; // contain
+      background-repeat: no-repeat;
+      z-index: -1;
+  }
+
+.header-image {
+    background-image: url(../assets/imgs/bg2.jpg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
+    /*height: 30vh; */
+    position: relative;
+    z-index: -1;
+}
+.main-content {
+    margin-top: -20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 20px;
+    /* background-color: white; 
+    background-color: transparent;*/
+    background-color: rgba(0, 0, 0, 0.6);
+    -webkit-box-shadow: 0px 0px 55px -16px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 55px -16px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 55px -16px rgba(0, 0, 0, 0.75);
+    position: relative !important;
+}
+.circular {
+    width: 100px;
+    height: 100px;
+    position: inherit;
+    border-radius: 50%;
+    -webkit-border-radius: 150px;
+    -moz-border-radius: 150px;
+    border: solid white;
+    background: url(../assets/imgs/profile-avatar.jpg) no-repeat;
+    background-size: 100%;
+    margin-top: -70px;
+    margin-left: auto;
+    margin-right: auto;
+    // margin-bottom: 50px;
+}
+.profile-description {
+    font-size: 15px;
+    color: #888;
+}
+
+
+
+// Datetime Picker
+/*
+.picker-columns,
+.picker-toolbar,
+.picker-md .picker-wrapper,
+.picker-md .picker-toolbar
+ {
+ background: map-get($colors, primary);
+ //background: url(../assets/images/background2.png);
+ background-size: cover !important;
+ background-repeat: no-repeat;
+ background-position: center;
+ background-attachment: fixed;
+}
+.picker-md .picker-prefix,
+.picker-md .picker-suffix,
+.picker-md .picker-opt.picker-opt-selected {
+ color: #fff;
+ font-family: Montserrat-Medium;
+}
+.picker-md .picker-opt {
+   color: map-get($colors, secondary);
+   font-family: Montserrat-Light;
+}
+
+.picker-md .picker-button,
+.picker-md .picker-button.activated {
+ color: #fff;
+ font-family: Montserrat-Regular;
+}
+*/

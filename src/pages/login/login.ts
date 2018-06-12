@@ -1,14 +1,13 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { Network } from '@ionic-native/network';
+import { NetworkInterface } from '@ionic-native/network-interface';
 import * as firebase from "firebase/app";
 import { AngularFireAuth } from "angularfire2/auth";
 import { Observable } from "rxjs/Observable";
 import { AlertController } from 'ionic-angular';
-
 import { GooglePlus } from "@ionic-native/google-plus";
 import { Platform } from "ionic-angular";
-import { HallPage } from '../hall/hall';
 import { RoomPage } from '../room/room';
 
 @Component({
@@ -18,25 +17,13 @@ import { RoomPage } from '../room/room';
 })
 export class LoginPage {
 
-  /*
-this.network.onDisconnect().subscribe(() => {
-    let alert = this.alertCtrl.create({
-      title: "Connection Failed !",
-      subTitle: "There may be a problem in your internet connection. Please try again ! ",
-      buttons: [{ text: ("Okay") }]
-    });
-    alert.present();
-    });
-
-     (<any>window).networkinterface.getWiFiIPAddress((ip) => {
-     console.log("network ip address = " + ip);
-    });
-*/
-    
   user: Observable<firebase.User>;
+
   userInfo = { uid: "", name: "", displayName:"", email: "", phone: "", photo: "" };
 
-  constructor(public network: Network,
+
+  constructor(private network: Network,
+              private networkInterface: NetworkInterface,
               private alertCtrl: AlertController,
               private afAuth: AngularFireAuth,
               private googlePlus: GooglePlus, 
@@ -44,18 +31,51 @@ this.network.onDisconnect().subscribe(() => {
               public navCtrl: NavController, 
               public navParams: NavParams) {
 
-    this.getUserInfo();
-    this.user = this.afAuth.authState;
+        this.getUserInfo();
+        this.netAlert()
+        this.netStatusOn()
+        this.netStatusOff()
+
   }
 
+  netAlert(){
+    this.alertCtrl.create({
+    title: "Connection Failed !",
+    subTitle: "There may be a problem in your internet connection. Please try again ! ",
+    buttons: [{ text: ("Okay") }]
+  });
+  } 
+
+   // watch network for a connection
+   netStatusOn() {
+     this.network.onConnect().subscribe(() => {
+    console.log('network connected!');
+    // We just got a connection but we need to wait briefly
+    // before we determine the connection type. Might need to wait.
+    // prior to doing any api requests as well.
+    setTimeout(() => {
+      if (this.network.type === 'wifi') {
+        console.log('we got a wifi connection, woohoo!');
+      }
+    }, 3000);
+  }); 
+   }  
+
+  netStatusOff() {
+    this.network.onDisconnect().subscribe(() => {
+    console.log('network was disconnected :-(');
+  });
+  }
   // Login Function 
 
   googleLogin() {
-    if (this.platform.is('cordova')) {
-      this.nativeGoogleLogic();
-      console.log(this.nativeGoogleLogic());
-    } else {
-      this.webGoogleLogin();
+    if(!this.getUserInfo()){
+      if (this.platform.is('cordova')) {
+        this.nativeGoogleLogic();
+        console.log(this.nativeGoogleLogic());
+      } else {
+        this.webGoogleLogin();
+      }      
     }
 
   }
@@ -80,12 +100,7 @@ this.network.onDisconnect().subscribe(() => {
         this.userInfo.photo = googlePlusUser.user.photoURL;
 
         localStorage.setItem('userInfo', JSON.stringify(this.userInfo));
-        console.log("From googlePlusUser 66 " + JSON.stringify(googlePlusUser));
-        /*
-          if (localStorage.getItem("userInfo")) {
-            this.userInfo = JSON.parse(localStorage.getItem("userInfo"));
-          }  
-      */
+
       }
 
       return await this.afAuth.auth.signInWithCredential(
@@ -128,7 +143,8 @@ this.network.onDisconnect().subscribe(() => {
     if (this.platform.is('cordova')) {
       this.googlePlus.logout();
     }
-    localStorage.setItem('userInfo', null);
+    localStorage.removeItem('userInfo')
+    this.userInfo = { uid: "", name: "", displayName:"", email: "", phone: "", photo: "" };
   }
 
   enterDisplayname() {
@@ -137,14 +153,21 @@ this.network.onDisconnect().subscribe(() => {
     });
   }
 
-  getUserInfo(): void { 
-    if (localStorage.getItem('userInfo') === "undefined" || localStorage.getItem('userInfo') === null) {
-      //Go to login
-    } else {
-      // Login
-      this.userInfo = JSON.parse(localStorage.getItem('userInfo'));
-      console.log(this.userInfo);
+  getUserInfo(): boolean { 
+    try{
+      if (localStorage.getItem('userInfo') !== null) {
+        // Retrieve userInfo
+        this.userInfo = JSON.parse(localStorage.getItem('userInfo'));
+        console.log(`userInfo: ${JSON.stringify(this.userInfo)}`);
+        return true;
+      } else {
+        console.log("userInfo not found in localStorage goto Google Auth")
+        this.user = this.afAuth.authState;
+      }
+    } catch (err) {
+      throw err
     }
+    return false;
   }
 
 

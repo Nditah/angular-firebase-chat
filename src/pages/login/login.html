@@ -4,20 +4,23 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content text-wrap padding>
+<ion-content class="bg-modal" padding>
+    
+    <div  text-wrap text-center>
   <!-- Generated template for the GoogeLoginComponent component -->
-  <div *ngIf="( user | async ) || {} as user ">
+  <!-- <div *ngIf="( user | async ) || {} as user "> -->
+  <div *ngIf=" userInfo || {} as userInfo ">
 
-    <ion-list *ngIf="!user.uid">
+    <ion-list *ngIf="!userInfo.uid">
       <ion-item text-center>
-        <a button ion-button color="success" *ngIf="!user.uid" (tap)="googleLogin()" icon-start large>
+        <a button ion-button color="success" *ngIf="!userInfo.uid" (tap)="googleLogin()" icon-start large>
           <ion-icon name='logo-google'></ion-icon>
-          Login with Google
+          Login 
         </a>
       </ion-item>
     </ion-list>
 
-    <ion-list no-lines *ngIf="user.uid">
+    <ion-list no-lines *ngIf="userInfo.uid">
       <ion-item>
         <a class="item ion-avatar" style="align-items: center; max-width:2.5rem; max-height:2.5rem;">
           <img src="{{ userInfo.photo }}" alt="Display Name">
@@ -34,7 +37,7 @@
         <p>Email</p>
         {{ userInfo.email }}
       </ion-item>
-      <ion-item *ngIf="userInfo.phone">
+      <ion-item>
         <ion-icon item-start name="call" color="primary"></ion-icon>
         <p>Mobile</p>
         {{ userInfo.phone }}
@@ -42,7 +45,7 @@
       <ion-item>
         <ion-icon item-start name="person" color="primary"></ion-icon>       
         <ion-label color="primary" floating>Display name</ion-label>
-        <ion-input type="text" [(ngModel)]="userInfo.displayName" placeholder="Display Name"></ion-input>
+        <ion-input type="text" [(ngModel)]="userInfo.displayName" pattern="[A-Za-z0-9]{1,32}"></ion-input>
       </ion-item>
       <ion-item>
         <button ion-button color="primary" (tap)="enterDisplayname()">Enter Chat</button>
@@ -51,6 +54,6 @@
 
 
     </ion-list>
-
+    </div>
   </div>
 </ion-content>

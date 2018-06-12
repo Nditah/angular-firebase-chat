@@ -6,12 +6,12 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content class="bg-modal" text-wrap padding>
+<ion-content class="bg-modal" padding>
     
     <div class="main-content" text-wrap text-center>
-        <div class="circular"><img src="assets/imgs/grandilo.png"></div>
+        <div class="circular"><img src="assets/imgs/grandilo.jpg"></div>
       <h2>{{user.name}}</h2>
-      <p>{{user.occupation}} &bull; {{user.location}}</p>
+      <p>{{user.address}}</p>
       <p class="profile-description">{{user.description}}</p>
       <hr>
       <ion-list no-lines>
@@ -27,10 +27,6 @@
           <ion-icon item-start name="logo-whatsapp" color="secondary"></ion-icon>
           <a color="secondary" item-end small href="whatsapp://send?text=Hi from ionic&phone=+{{user.phone}}&abid=+{{user.phone}}">
             {{user.whatsapp}}</a>
-        </ion-item>
-        <ion-item>
-          <ion-icon item-start name="pin" color="secondary"></ion-icon>
-          <p>{{user.address}}</p>
         </ion-item>
       </ion-list>
       <h2>Get in touch</h2>

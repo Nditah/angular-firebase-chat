@@ -8,6 +8,7 @@ export enum ConnectionStatusEnum {
     Online,
     Offline
 }
+
 @Injectable()
 export class NetworkProvider {
 
@@ -16,8 +17,10 @@ previousStatus: any;
               public alertCtrl: AlertController, 
               public network: Network,
               public eventCtrl: Events) {
-    console.log('Hello NetworkProvider Provider');
+    
     this.previousStatus = ConnectionStatusEnum.Online;
+    this.initializeNetworkEvents;
+    console.log(`Hello NetworkProvider Provider `);
   }
 
   public initializeNetworkEvents(): void {

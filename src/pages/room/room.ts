@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AddroomPage } from '../addroom/addroom';
 import { HomePage } from '../home/home';
+import { LoginPage } from '../login/login';
 import * as firebase from 'Firebase';
 
 @IonicPage()
@@ -26,6 +27,10 @@ export class RoomPage  {
     console.log('ionViewDidLoad RoomPage');
   }
 
+  signOut() {
+    this.navCtrl.push(LoginPage);
+    localStorage.removeItem('userInfo')
+  }
 
   // navigating to `add-room` page.
   addRoom() {

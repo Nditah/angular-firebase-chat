@@ -1,7 +1,7 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
@@ -20,8 +20,9 @@ import { AddroomPage } from './../pages/addroom/addroom';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { NetworkProvider } from '../providers/network/network';
 import { Network } from '@ionic-native/network';
+import { NetworkInterface } from '@ionic-native/network-interface';
+import { NetworkProvider } from '../providers/network/network';
 
 const firebaseConfig = {
   apiKey: "AIzaSyBmVtVf0Txg5K-6lRG_-atC8sRVsI8MHWE",
@@ -72,6 +73,7 @@ const firebaseConfig = {
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     HttpClientModule, HttpModule,
     Network,
+    NetworkInterface,
     NetworkProvider
   ]
 })

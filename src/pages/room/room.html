@@ -11,6 +11,9 @@
   
   <ion-content padding>
     <ion-list>
+    <ion-item>
+      <button ion-button color="danger" (tap)="signOut()" item-end>Signout</button>
+    </ion-item>
       <ion-item *ngFor="let room of rooms">
         {{room.roomname}}
         <ion-icon name="chatboxes" item-end (click)="joinRoom(room.key)"></ion-icon>
